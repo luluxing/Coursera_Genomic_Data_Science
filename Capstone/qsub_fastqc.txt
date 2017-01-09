@@ -1,0 +1,18 @@
+#!/bin/sh -l
+#PBS -M luluxing1988@gmail.com
+#PBS -m abe
+#PBS -q ...
+#PBS -l walltime=...
+#PBS -l ...
+#PBS -N fastqc
+
+#PBS -l ...
+#PBS -d ...
+
+
+module load bioinfo
+module load fastqc/0.11.2
+
+mkdir -p FastQC
+
+time fastqc -o FastQC --nogroup -f fastq -t 2 {a,f}*/*/*/*_{1,2}*gz 2>  /dev/null

@@ -1,0 +1,40 @@
+#!/bin/sh -l
+#PBS -M luluxing1988@gmail.com
+#PBS -m abe
+#PBS -q ...
+#PBS -l walltime=...
+#PBS -l ...
+#PBS -N fastqc
+
+#PBS -l ...
+#PBS -d ...
+
+
+module load bioinfo
+
+mkdir -p featureCounts; mkdir -p featureCounts/fetal_featC
+
+cd featureCounts/fetal_featC
+
+PRE=f1_L1
+time featureCounts -p -t exon -g gene_id -a ../../Homo_sapiens.GRCh37.75.gtf -o featC_$PRE ../../fetal/fetal_1/L1/accepted_hits.bam &
+
+PRE=f1_L2
+time featureCounts -p -t exon -g gene_id -a ../../Homo_sapiens.GRCh37.75.gtf -o featC_$PRE ../../fetal/fetal_1/L2/accepted_hits.bam &
+
+PRE=f2_L1
+time featureCounts -p -t exon -g gene_id -a ../../Homo_sapiens.GRCh37.75.gtf -o featC_$PRE ../../fetal/fetal_2/L1/accepted_hits.bam &
+
+PRE=f2_L2
+time featureCounts -p -t exon -g gene_id -a ../../Homo_sapiens.GRCh37.75.gtf -o featC_$PRE ../../fetal/fetal_2/L2/accepted_hits.bam &
+
+PRE=f3_L1
+time featureCounts -p -t exon -g gene_id -a ../../Homo_sapiens.GRCh37.75.gtf -o featC_$PRE ../../fetal/fetal_3/L1/accepted_hits.bam &
+
+PRE=f3_L2
+time featureCounts -p -t exon -g gene_id -a ../../Homo_sapiens.GRCh37.75.gtf -o featC_$PRE ../../fetal/fetal_3/L2/accepted_hits.bam &
+
+wait
+
+
+
